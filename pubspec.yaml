@@ -9,6 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  shared_preferences: ^2.1.1
+  flutter_lints: ^3.0.0
+  http: ^1.2.1
+  jumping_dot: ^0.0.6
+  flutter_widget_from_html: ^0.14.11
 
 dev_dependencies:
   flutter_test:
@@ -17,6 +22,7 @@ dev_dependencies:
   http: ^1.2.1
   jumping_dot: ^0.0.6
   flutter_widget_from_html: ^0.14.11
+  shared_preferences: ^2.1.1
 
 flutter:
   uses-material-design: true
