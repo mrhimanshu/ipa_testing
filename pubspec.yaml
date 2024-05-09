@@ -1,0 +1,24 @@
+name: knowact
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  http: ^1.2.1
+  jumping_dot: ^0.0.6
+  flutter_widget_from_html: ^0.14.11
+
+flutter:
+  uses-material-design: true
+  assets:
+    - asset/
