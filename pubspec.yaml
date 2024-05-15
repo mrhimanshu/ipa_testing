@@ -14,6 +14,7 @@ dependencies:
   http: ^1.2.1
   jumping_dot: ^0.0.6
   flutter_widget_from_html: ^0.14.11
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -23,6 +24,12 @@ dev_dependencies:
   jumping_dot: ^0.0.6
   flutter_widget_from_html: ^0.14.11
   shared_preferences: ^2.1.1
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "icons/logo.png" 
 
 flutter:
   uses-material-design: true

@@ -7,6 +7,11 @@ import 'dart:convert';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class ChatScreen extends StatefulWidget {
+  final String userId;
+
+  // Constructor to receive the userId as an argument
+  const ChatScreen({Key? key, required this.userId}) : super(key: key);
+
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -26,7 +31,8 @@ class _ChatScreenState extends State<ChatScreen> {
   List<Message> _messages = [
     Message(text: "Hello!", isUser: true, isLoading: false),
     Message(
-        text: "Hey !! \n\nI am your helpful bot. Kindly ask your query...",
+        text:
+            "Hey !! \n\nI am your helpful medical bot. Kindly ask your query...",
         isUser: false,
         isLoading: true), // Placeholder for bot response
   ];
@@ -58,11 +64,13 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _fetchBotResponse(String message) async {
     // final String userId = ModalRoute.of(context)!.settings.arguments as String;
-    // print(userId);
-    print(message);
+    final String userId = widget.userId;
+    print(userId);
+
     final url = Uri.parse(
         // 'https://304a-2405-201-4036-8912-19de-d411-5c2f-9984.ngrok-free.app/model?ques=$userId&data=$message');
-        'https://memrhimanshu.loca.lt/model?ques=$message');
+        // 'https://memrhimanshu.loca.lt/model?conversation_id=$userId&ques=$message');
+        'https://d91be46f724914c0ea8cbd554a1e10759.clg07azjl.paperspacegradient.com/model?conversation_id=$userId&ques=$message');
     final client = http.Client();
     String botResponse = '';
     try {
@@ -77,7 +85,6 @@ class _ChatScreenState extends State<ChatScreen> {
       // Read and print the chunks from the response stream
       await for (var chunk in response.stream.transform(utf8.decoder)) {
         // Process each chunk as it is received
-        print(chunk);
         botResponse += chunk;
         setState(() {
           _messages.last =
@@ -135,7 +142,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     children: [
                       Icon(
                         icon,
-                        color: isUserMessage ? Colors.blue : Colors.black,
+                        color: isUserMessage
+                            ? Color.fromARGB(255, 144, 203, 185)
+                            : Colors.black,
                       ),
                       const SizedBox(width: 8.0),
                       Flexible(
@@ -153,7 +162,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             padding: const EdgeInsets.all(12.0),
                             decoration: BoxDecoration(
                               color: isUserMessage
-                                  ? Colors.blue
+                                  ? Color.fromARGB(255, 144, 203, 185)
                                   : Color.fromARGB(255, 250, 250, 250),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
@@ -185,7 +194,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: Column(children: [
                       if (_isSending)
                         JumpingDots(
-                          color: Colors.blueAccent,
+                          color: Color.fromARGB(255, 144, 203, 185),
                           radius: 8,
                           numberOfDots: 5,
                         ),

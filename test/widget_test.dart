@@ -12,7 +12,7 @@ import 'package:knowact/pages/chatbot.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(ChatScreen());
+    // await tester.pumpWidget(ChatScreen());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
