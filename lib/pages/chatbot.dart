@@ -75,8 +75,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
     final url = Uri.parse(
         // 'https://304a-2405-201-4036-8912-19de-d411-5c2f-9984.ngrok-free.app/model?ques=$userId&data=$message');
-        'https://memrhimanshu.loca.lt/model?conversation_id=$userId&ques=$message&$publicParam');
-    // 'https://d91be46f724914c0ea8cbd554a1e10759.clg07azjl.paperspacegradient.com/model?conversation_id=$userId&ques=$message');
+        // 'https://memrhimanshu.loca.lt/model?conversation_id=$userId&ques=$message&$publicParam');
+        'https://d29215ecd7b884fdaa0969642fbd056a7.clg07azjl.paperspacegradient.com/model?conversation_id=$userId&ques=$message&$publicParam');
     final client = http.Client();
     String botResponse = '';
     try {
