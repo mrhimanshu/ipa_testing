@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:jumping_dot/jumping_dot.dart';
@@ -38,6 +39,7 @@ class _ChatScreenState extends State<ChatScreen> {
   ];
 
   bool _isSending = false;
+  bool _isPublicAnswer = false; // New variable to track public answer toggle
 
   @override
   void dispose() {
@@ -66,11 +68,15 @@ class _ChatScreenState extends State<ChatScreen> {
     // final String userId = ModalRoute.of(context)!.settings.arguments as String;
     final String userId = widget.userId;
     print(userId);
+    print(message);
+
+    // Define the query parameter for public answer
+    final String publicParam = _isPublicAnswer ? 'public=true' : 'public=false';
 
     final url = Uri.parse(
         // 'https://304a-2405-201-4036-8912-19de-d411-5c2f-9984.ngrok-free.app/model?ques=$userId&data=$message');
-        // 'https://memrhimanshu.loca.lt/model?conversation_id=$userId&ques=$message');
-        'https://d91be46f724914c0ea8cbd554a1e10759.clg07azjl.paperspacegradient.com/model?conversation_id=$userId&ques=$message');
+        'https://memrhimanshu.loca.lt/model?conversation_id=$userId&ques=$message&$publicParam');
+    // 'https://d91be46f724914c0ea8cbd554a1e10759.clg07azjl.paperspacegradient.com/model?conversation_id=$userId&ques=$message');
     final client = http.Client();
     String botResponse = '';
     try {
@@ -112,13 +118,54 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'Chatbot',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          'MediQuery',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Public',
+                style: TextStyle(
+                  fontSize: 15, // Adjust font size as needed
+                  color: Color.fromARGB(255, 46, 46, 46), // Set text color
+                ),
+              ),
+              Transform.scale(
+                scale: 0.7, // Adjust the scale factor as needed
+                child: Switch(
+                  value: _isPublicAnswer,
+                  onChanged: (value) {
+                    setState(() {
+                      _isPublicAnswer = value;
+                    });
+                  },
+                  activeColor: Color.fromARGB(255, 144, 203, 185),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(
           children: <Widget>[
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.end,
+            //   children: [
+            //     Text("Public Answer"),
+            //     Switch(
+            //       activeColor: Color.fromARGB(255, 144, 203, 185),
+            //       value: _isPublicAnswer,
+            //       onChanged: (value) {
+            //         setState(() {
+            //           _isPublicAnswer = value;
+            //         });
+            //       },
+            //     ),
+            //   ],
+            // ),
             Expanded(
               child: ListView.separated(
                 reverse: true,
